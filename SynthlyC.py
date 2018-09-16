@@ -4,6 +4,8 @@ import math
 
 cap = cv2.VideoCapture(1)
 
+
+
 while (1):
 
     try:  # an error comes if it does not find anything in window as it cannot find contour of max area

@@ -186,7 +186,7 @@ while (1):
 
             # Print bounding rectangle
             x, y, w, h = cv2.boundingRect(cnts)
-            img = cv2.rectangle(frame, (x+100, y), (x + w, y + h), (0, 255, 0), 2)
+            img = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
             cv2.drawContours(frame, [hull], -1, (255, 255, 255), 2)
 
@@ -204,3 +204,34 @@ while (1):
 
 cap.release()
 cv2.destroyAllWindows()
+
+
+
+
+import subprocess
+import threading
+import time
+
+def some_func(one, two, an_arg = 0):
+    return one + two * an_arg
+
+
+eg = threading.Thread(target=some_func,
+                      args = (1, 2),
+                      kwargs = {"an_arg": 3})
+
+
+# Get input from Mark's thingy
+# 0 1 2 3 4
+
+sounds = ["A.wav", "B.wav", "C.wav", "D.wav", "E.wav"]
+
+def playSound(note):
+    subprocess.call(["afplay", sounds[note]])
+
+
+def playNote(note):
+    # subprocess.call(["afplay", sounds[note]])
+    # playSound(sounds(note))
+    t = threading.Thread(target=playSound, args = (), kwargs = {"note": note})
+    t.start()
